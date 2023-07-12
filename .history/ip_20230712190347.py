@@ -11,6 +11,7 @@ futureTradeDir = "/Users/shezihua/Documents/MAFM/2022-2023 Summer/MAFS 6100L/Hon
 stockDir = "/Users/shezihua/Documents/MAFM/2022-2023 Summer/MAFS 6100L/Hongsong CHOU/data/stocks/"
 
 
+
 futureData = func.combineFutureData('QWF')
 
 

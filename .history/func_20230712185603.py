@@ -20,10 +20,6 @@ stoColNames = ['date', 'time', 'lastPx', 'size', 'volume', 'SP5', 'SP4', 'SP3', 
        'SV1', 'BV1', 'BV2', 'BV3', 'BV4', 'BV5']
 
 def combineFutureData(name):  # name is the future code, type is string
-    futurecolNames = ['date', 'time', 'askPrice5', 'askPrice4', 'askPrice3', 'askPrice2',
-       'askPrice1', 'bidPrice1', 'bidPrice2', 'bidPrice3', 'bidPrice4',
-       'bidPrice5', 'askSize5', 'askSize4', 'askSize3', 'askSize2', 'askSize1',
-       'bidSize1', 'bidSize2', 'bidSize3', 'bidSize4', 'bidSize5', 'symbol']
     futureFileList = []
     for i in os.listdir(futureOBDir + name + "/"):
         futureFileList.append(i)
@@ -47,9 +43,6 @@ def pricePlot(data):
 
 
 def combineStockData(name):
-    stoColNames = ['date', 'time', 'lastPx', 'size', 'volume', 'SP5', 'SP4', 'SP3', 'SP2',
-       'SP1', 'BP1', 'BP2', 'BP3', 'BP4', 'BP5', 'SV5', 'SV4', 'SV3', 'SV2',
-       'SV1', 'BV1', 'BV2', 'BV3', 'BV4', 'BV5']
     stockFileList = []
     for i in os.listdir(stockDir + name + "/"):
         stockFileList.append(i)
@@ -110,14 +103,7 @@ def syncStock(stockData, futureData):
     stockData_downsampled = resampledStockData.loc[futureData.index]
     return stockData_downsampled
 
-def deleZeroNa(stockPrice, futurePrice):
-    na_index = stockPrice.isna()
-    stockPrice = stockPrice[~na_index]
-    futurePrice = futurePrice[~na_index]
-    zero_index = (futurePrice == 0)
-    stockPrice = stockPrice[~zero_index]
-    futurePrice = futurePrice[~zero_index]
-    return stockPrice, futurePrice
+
 
 
 
