@@ -122,11 +122,7 @@ def deleZeroNa(stockPrice, futurePrice):
     zero_index = (futurePrice == 0.0)
     stockPrice = stockPrice[~zero_index]
     futurePrice = futurePrice[~zero_index]
-    zero_index = (stockPrice == 0.0)
-    stockPrice = stockPrice[~zero_index]
-    futurePrice = futurePrice[~zero_index]
     return stockPrice, futurePrice
-
 
 
 

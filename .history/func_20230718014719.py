@@ -61,9 +61,8 @@ def combineStockData(name):
     for file in stockFileList:
         stock_data = pd.read_csv(stockDir + name + '/' + file, compression='gzip', index_col=0)
         stockData = pd.concat([stockData, stock_data])
-    stockData = stockData.drop(stockData.SP1[stockData.SP1 == 0].index)
-    stockData = stockData.drop(stockData.BP1[stockData.BP1 == 0].index)
-    stockData['price'] = ((stockData['SP1'] + stockData['BP1'])/2).astype(float)
+    stockData = stockData.drop(stockData.askPrice1[stockData.askPrice1 == 0].index)
+    stockData = stockData.drop(stockData.bidPrice1[stockData.bidPrice1 == 0].index)
     stockData = stockData.reset_index(drop=True)
     return stockData
 
@@ -119,14 +118,10 @@ def deleZeroNa(stockPrice, futurePrice):
     na_index = stockPrice.isna()
     stockPrice = stockPrice[~na_index]
     futurePrice = futurePrice[~na_index]
-    zero_index = (futurePrice == 0.0)
-    stockPrice = stockPrice[~zero_index]
-    futurePrice = futurePrice[~zero_index]
-    zero_index = (stockPrice == 0.0)
+    zero_index = (futurePrice == 0)
     stockPrice = stockPrice[~zero_index]
     futurePrice = futurePrice[~zero_index]
     return stockPrice, futurePrice
-
 
 
 
