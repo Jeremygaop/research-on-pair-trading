@@ -37,7 +37,7 @@ def combineFutureData(name):  # name is the future code, type is string
             futureOB_data = pd.read_csv(futureOBDir + name + '/' + file, compression='gzip')
         futureData = pd.concat([futureData, futureOB_data])
         futureData = futureData.drop(futureData.askPrice1[futureData.askPrice1 == 0].index)
-        futureData = futureData.drop(futureData.bidPrice1[futureData.bidPrice1 == 0].index)
+        futureData = futureData.drop(futureData.askPrice1[futureData.bidPrice1 == 0].index)
         futureData = futureData.reset_index(drop=True)
         futureData['midQ'] = ((futureData['askPrice1'] + futureData['bidPrice1']) / 2).astype(float)
     return futureData
