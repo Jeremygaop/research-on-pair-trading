@@ -24,8 +24,8 @@ for i in range(10):
     stockCode = stockCodeList[i]
     print(futureCode + stockCode + "pairs begin")
 
-    futureData = func.combineFutureData(futureCode)
-    stockData = func.combineStockData(stockCode)
+    futureData = func.combineFutureData('futureCode')
+    stockData = func.combineStockData('stockCode')
     print("data combination finished")
 
     commonDays = func.findCommonDay(stockData, futureData)
