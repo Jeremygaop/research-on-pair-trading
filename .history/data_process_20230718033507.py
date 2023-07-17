@@ -55,7 +55,7 @@ for i in range(10):
     print("stock data saving finished")
     X.to_csv(path + 'spread.csv.gz', compression='gzip', index=False)
     print("spread data saving finished")
-    print(futureCode + '-' + stockCode + " pairs finish")
+    print(futureCode + stockCode + "pairs finish")
     print("=================")
 
 print("All data process are finished")

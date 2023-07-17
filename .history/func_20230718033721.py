@@ -19,8 +19,7 @@ def combineFutureData(name):  # name is the future code, type is string
     futureFileList = []
     for i in os.listdir(futureOBDir + name + "/"):
         futureFileList.append(i)
-    if '.DS_Store' in futureFileList:
-        futureFileList.remove('.DS_Store')
+    # futureFileList.remove('.DS_Store')
     futureFileList = sorted(futureFileList)
     futureData = pd.DataFrame([], columns=futurecolNames)
     for file in futureFileList:
