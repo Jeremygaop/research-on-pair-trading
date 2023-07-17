@@ -119,9 +119,6 @@ def deleZeroNa(stockPrice, futurePrice):
     na_index = stockPrice.isna()
     stockPrice = stockPrice[~na_index]
     futurePrice = futurePrice[~na_index]
-    na_index = futurePrice.isna()
-    stockPrice = stockPrice[~na_index]
-    futurePrice = futurePrice[~na_index]
     zero_index = (futurePrice == 0.0)
     stockPrice = stockPrice[~zero_index]
     futurePrice = futurePrice[~zero_index]
@@ -131,17 +128,5 @@ def deleZeroNa(stockPrice, futurePrice):
     return stockPrice, futurePrice
 
 
-def syncFuture(stockData, futureData):
-    ## Now, we synchronize the timestamps of the two time series; here, we downsample the time series with more time stamps
-    ### First, we union the indexes
-    new_index1 = stockData.index.union(futureData.index)
-    new_index = np.unique(new_index1)
 
-    ### Next, we insert stock time stamps to index futures data
-    resampledFutureData = futureData.reindex(new_index)
-
-    ### Then, we forward fill nan's in the index futures data so that date and time will not be nan's
-    resampledFutureData.fillna(method='ffill',inplace=True)
-    futureData_downsampled = resampledFutureData.loc[stockData.index]
-    return futureData_downsampled
 

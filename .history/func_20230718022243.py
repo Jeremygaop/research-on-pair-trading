@@ -119,9 +119,6 @@ def deleZeroNa(stockPrice, futurePrice):
     na_index = stockPrice.isna()
     stockPrice = stockPrice[~na_index]
     futurePrice = futurePrice[~na_index]
-    na_index = futurePrice.isna()
-    stockPrice = stockPrice[~na_index]
-    futurePrice = futurePrice[~na_index]
     zero_index = (futurePrice == 0.0)
     stockPrice = stockPrice[~zero_index]
     futurePrice = futurePrice[~zero_index]
