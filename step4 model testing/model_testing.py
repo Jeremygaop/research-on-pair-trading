@@ -90,7 +90,8 @@ def test_OLS(data, factors, start_date, train_period, test_period):
     print("out-sample hit ratio: ", sum(all_hit_ratio_out) / len(all_hit_ratio_out))
 
 
-def test_logistic(data, factors, start_date, train_period, test_period):
+def test_logistic(data, factors, start_date, train_period, test_period, filter_factor='RSI', upper_quantile=0.5,
+                  lower_quantile=0.5):
     all_r2_in = []
     all_r2_out = []
     all_rmse_in = []
@@ -113,11 +114,22 @@ def test_logistic(data, factors, start_date, train_period, test_period):
 
         train_data = data.loc[start_date:train_date]
         train_data = train_data[:-1]
+
+        spread_upper = train_data[filter_factor].quantile(upper_quantile)
+        spread_lower = train_data[filter_factor].quantile(lower_quantile)
+
         test_data = data.loc[test_date:end_date]
+        # select the data with spread which is lager than the upper quantile or lower than the lower quantile
+        test_data = test_data[(test_data[filter_factor] > spread_upper) | (test_data[filter_factor] < spread_lower)]
         test_data = test_data[:-1]
+
+        if len(test_data) == 0:
+            start_date = valid_date_n_days_later(start_date, data, 1)
+            continue
 
         X_train = train_data[factors]
         y_train = train_data['delta_1']
+
         # convert y_train to binary
         y_train = y_train.apply(lambda x: 1 if x > 0 else -1)
 
@@ -162,8 +174,8 @@ def test_logistic(data, factors, start_date, train_period, test_period):
     # plot the 4 lists in the same plot
     plt.plot(all_r2_in, label='in-sample R2')
     plt.plot(all_r2_out, label='out-sample R2')
-    plt.plot(all_rmse_in, label='in-sample RMSE')
-    plt.plot(all_rmse_out, label='out-sample RMSE')
+    # plt.plot(all_rmse_in, label='in-sample RMSE')
+    # plt.plot(all_rmse_out, label='out-sample RMSE')
     plt.plot(all_hit_ratio_in, label='in-sample hit ratio')
     plt.plot(all_hit_ratio_out, label='out-sample hit ratio')
     plt.title('Logistic Regression')
