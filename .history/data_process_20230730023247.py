@@ -15,11 +15,11 @@ stockDir = "/Users/shezihua/Documents/MAFM/2022-2023 Summer/MAFS 6100L/Hongsong 
 print("dir loading finished")
 
 
-futureCodeList = ['IIF', 'QXF', 'PEF', 'NAF'] # ['JBF', 'QWF', 'HCF', 'DBF', 'EHF', 'IPF', 'IIF', 'QXF', 'PEF', 'NAF']
-stockCodeList = ['3006', '2615', '5425', '3105'] # ['3443', '2388', '2498', '2610', '1319', '3035', '3006', '2615', '5425', '3105']
+futureCodeList = ['JBF', 'QWF', 'HCF', 'DBF', 'EHF', 'IPF', 'IIF', 'QXF', 'PEF', 'NAF']
+stockCodeList = ['3443', '2388', '2498', '2610', '1319', '3035', '3006', '2615', '5425', '3105']
 
 
-for i in range(len(futureCodeList)):
+for i in range(10):
     futureCode = futureCodeList[i]
     stockCode = stockCodeList[i]
     print(futureCode + '-' + stockCode + " pairs begin")

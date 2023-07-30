@@ -19,7 +19,7 @@ futureCodeList = ['IIF', 'QXF', 'PEF', 'NAF'] # ['JBF', 'QWF', 'HCF', 'DBF', 'EH
 stockCodeList = ['3006', '2615', '5425', '3105'] # ['3443', '2388', '2498', '2610', '1319', '3035', '3006', '2615', '5425', '3105']
 
 
-for i in range(len(futureCodeList)):
+for i in range(10):
     futureCode = futureCodeList[i]
     stockCode = stockCodeList[i]
     print(futureCode + '-' + stockCode + " pairs begin")
