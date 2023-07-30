@@ -90,7 +90,7 @@ def test_OLS(data, factors, start_date, train_period, test_period):
     print("out-sample hit ratio: ", sum(all_hit_ratio_out) / len(all_hit_ratio_out))
 
 
-def test_logistic(data, factors, start_date, train_period, test_period, filter_factor='RSI', upper_quantile=0.5,
+def test_logistic(data, factors, start_date, train_period, test_period, symbol, filter_factor='RSI', upper_quantile=0.5,
                   lower_quantile=0.5):
     all_r2_in = []
     all_r2_out = []
@@ -178,7 +178,7 @@ def test_logistic(data, factors, start_date, train_period, test_period, filter_f
     # plt.plot(all_rmse_out, label='out-sample RMSE')
     plt.plot(all_hit_ratio_in, label='in-sample hit ratio')
     plt.plot(all_hit_ratio_out, label='out-sample hit ratio')
-    plt.title('Logistic Regression')
+    plt.title('Logistic Regression on ' + symbol)
     plt.legend()
     plt.show()
 
