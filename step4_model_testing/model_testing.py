@@ -149,6 +149,7 @@ def test_logistic(data, factors, start_date, train_period, test_period, symbol, 
         y_test_pred = pd.Series(y_test_pred, index=y_test.index)
         y_test_preds = pd.concat([y_test_preds, y_test_pred], axis=0)
 
+
         r2_in = model_logistic.score(X_train, y_train)
         r2_out = model_logistic.score(X_test, y_test)
         rmse_in = np.sqrt(np.mean((model_logistic.predict(X_train) - y_train) ** 2))
@@ -175,7 +176,7 @@ def test_logistic(data, factors, start_date, train_period, test_period, symbol, 
         all_hit_ratio_out.append(hit_ratio_out / len(y_test_pred))
 
         start_date = valid_date_n_days_later(start_date, data, 1)
-
+    print(y_test_preds)
     # # plot the 4 lists in the same plot
     # plt.plot(all_r2_in, label='in-sample R2')
     # plt.plot(all_r2_out, label='out-sample R2')
